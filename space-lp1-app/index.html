@@ -185,7 +185,7 @@
                 for (let i = 0; i < numQuestions; i++) {
                     const answer = getAnswer(i);
 					if(answer === ''){
-						alert("compila tutte le domande prima di consegnare.");
+						alert("Compila tutte le domande prima di consegnare.");
 						return;
 					}
                     if (answer === answers[i]) {
@@ -199,9 +199,9 @@
                 }
 
                 var trentesimi = (score / numQuestions) * 30;
-                resultDiv.innerHTML = 'Hai totalizzato ' + score + ' punti su ' + numQuestions + '.' + ' (' + trentesimi + ' in trentesimi)' + '<br>';
+                resultDiv.innerHTML = '<h1>Hai totalizzato ' + score + ' punti su ' + numQuestions + '.' + ' (' + trentesimi + ' in trentesimi)</h1>';
                 if (wrongAnswers.length > 0) {
-                    resultDiv.innerHTML += 'Le risposte sbagliate sono:<br>';
+                    resultDiv.innerHTML += '<h2>Le risposte sbagliate sono:</h2>';
                     for (let i = 0; i < wrongAnswers.length; i++) {
                         resultDiv.innerHTML += '<strong>Domanda ' + (i + 1) + ':</strong> ' + wrongAnswers[i].question + '<br>';
                         resultDiv.innerHTML += 'Risposta corretta: ' + wrongAnswers[i].correctAnswer + '<br><br>';
@@ -229,7 +229,7 @@
 		<h1>Test di teoria di LP I</h1>
         <p>Chat GPT ha generato automaticamente il codice HTML, CSS e JavaScript per questo test.</p>
 		<p>Puoi modificare il codice per creare test per altri corsi o scaricarlo per eseguirlo offline.</p>
-        <p>Puoi trovare il codice sorgente del test su <a href="https://github.com/tuocif/chat-gpt-test-generator">GitHub</a>.</p>
+        <p>Puoi trovare il codice sorgente del test su <a href="https://github.com/AlessandroBonomo28/LP1-simulator">GitHub</a>.</p>
 		<button onclick="startTest()">Inizia il Test</button>
     </div>
     <div id="result" style="display: none;"></div>
