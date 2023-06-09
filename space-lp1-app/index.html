@@ -4,7 +4,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LP I simulator</title>
+    <title>LP I Simulator</title>
     <style>
         body {
 			font-family: Arial, sans-serif;
@@ -114,14 +114,129 @@
 
         function startTest() {
             const questionario = [
-            ["Il primo Fortran supportava la ricorsione. (v/f)", "f"],
-            ["Il primo Fortran aveva uno heap. (v/f)", "f"],
-            ["Il primo Fortran supportava un'operazione analoga ad una malloc. (v/f)", "f"],
-            ["Nel primo Fortran l'occupazione della memoria di un programma era nota a tempo di compilazione. (v/f)", "v"],
+            ["Il primo Fortran supportava la ricorsione.", "f"],
+            ["Il primo Fortran aveva uno heap.", "f"],
+            ["Il primo Fortran supportava un'operazione analoga ad una malloc.", "f"],
+            ["Nel primo Fortran l'occupazione della memoria di un programma era nota a tempo di compilazione.", "v"],
+            ["Il primo Fortran aveva uno heap e uno stack di attivazione.", "f"],
+            ["Il LISP è un linguaggio imperativo", "f"],
+            ["Il Lisp adotta lo scoping statico", "f"],
+            ["Il primo garbage collector è stato promosso nel LISP.", "v"],
+            ["Il Prolog puro supporta i cicli for/next", "f"],
+            ["In Prolog la ricerca del massimo in una lista può essere fatta in forma iterativa (non ricorsiva).", "f"],
+            ["Il predicato Prolog member può enumerare i membri di una lista e generare liste.", "v"],
+            ["SQL è un linguaggio general purpose", "f"],
+            ["HTTP (senza scripts) è un linguaggio genera purpose.", "f"],
+            ["Il C++ ha un garbage collector.", "f"],
+            ["In C++ l'ereditarietà multipla può causare un consumo esponenziale di memoria.", "v"],
+            ["In C, l'identificatore x in y=x rappresenta env(x).", "f"],
+            ["In C, l'identificatore &x in y=&x rappresenta env(x).", "v"],
+            ["C è debolmente tipato.", "v"],
+            ["Un linguaggio fortemente e staticamente tipato può avere le union del C.", "f"],
+            ["In C, il sistema dei tipi adotta solo la name equivalence.", "f"],
+            ["In C, il sistema dei tipi adotta solo la structural equivalence.", "f"],
+            ["In C, il sistema dei tipi adotta la name equivalence e la structural equivalence.", "v"],
+            ["Il C adotta sempre le structural equivalence tra tipi.", "f"],
+            ["Il C adotta la structural equivalence per le struct e le name equivalence per tutti gli altri tipi.", "f"],
+            ["Se in Java si usa unicamente il polimorfismo parametrico allora tutti i controlli di tipo avvengono a tempo di compilazione.", "v"],
+            ["In java, se l'unico polimorfismo universale usato è quello per inclusione, allora tutti gli eventuali errori di tipo sono segnalati a tempo di compilazione.", "f"],
+            ["Java non ha metodi analoghi alla funzione free() di C e C++","v"],
+            ["Se in Java si usa unicamente il polimorfismo parametrico allora tutti i controlli di tipo avvenogno a tempo di compilazione.","v"],
+            ["La JVM può cambiare classi a host diversi.","v"],
+            ["La JVM può caricare classi a host diversi.","v"],
+            ["Subito dopo l'esecuzione del costruttore alle variabili di istanza sono assegnati i valori di default","v"],
+            ["I modificatori che precedono una variabile di tipo array si applicano alla variabile array ed anche ai suoi elementi.","f"],
+            ["Non è possibile dichiarare un attributo senza inizializzarlo.","f"],
+            ["E' possibile dichiarare un attributo senza inizializzarlo.","t"],
+            ["Un attributo può essere contemporaneamente static e private.","v"],
+            ["Un attributo può essere contemporaneamente static e final.","v"],
+            ["Un attributo static può essere acceduto mediante un riferimento a un oggetto della sua classe di appartenenza.","v"],
+            ["Un attributo static non può essere acceduto mediante un riferimento a un oggetto della sua classe di appartenenza.","f"],
+            ["Un attributo static può essere acceduto mediante il nome della sua classe di appartenenza.","v"],
+            ["Non è possibile dichiarare un array senza indicarne la dimensione.","f"],
+            ["La lunghezza di un array può essere variata dopo la sua creazione.","f"],
+            ["La lunghezza di un array non può essere variata dopo la sua creazione.","v"],
+            ["La lunghezza di un array non può essere variata dopo la sua costruzione.","v"],
+            ["La dimensione di un array deve essere indicata al momento della dichiarazione dell'array","f"],
+            ["Il minimo numero di elementi che un array può contenere è 0.","v"],
+            ["Un array ha una sola superclasse.","v"],
+            ["Un array ha un'unica superclasse.","v"],
+            ["Un array vuoto non può avere riferimento null.","v"],
+            ["Un array non ha un'unica superclasse.","f"],
+            ["Un array con riferimento null ha lunghezza zero.","f"],
+            ["Un array non possiede dei membri.","f"],
+            ["Un array vuoto può avere riferimento null.","f"],
+            ["E' possibile dichiarare un array senza indicarne le dimensioni.","v"],
+            ["In Java non tutti i tipi numerici sono con segno.","f"],
+            ["Una classe non interna non può essere dichiarata private.","v"],
+            ["Una classe può essere dichiarata private.","v"],
+            ["Una classe non interna può essere dichiarata private.","f"],
+            ["Una classe non può essere dichiarata private.","f"],
+            ["Nell'overloading due metodi non possono avere lo stesso nome ma diverso tipo di parametri.","f"],
+            ["Due metodi non possono avere diverso nome ma lo stesso ipo di parametri.","f"],
+            ["Due metodi non possono differire per il tipo di ritorno.","v"],
+            ["Quando due metodi hanno lo stesso nome si ha overloading.","v"],
+            ["Due metodi possono differire per il tipo di ritorno.","f"],
+            ["Due metodi possono avere diverso nome ma lo stesso tipo di parametri.","v"],
+            ["Non tutti i tipi di eccezione estendono la classe Throwable.","f"],
+            ["Non tutti i tipi di eccezione estendono la classe Object.","f"],
+            ["Non tutti i tipi di eccezione estendono la classe RuntimeException.","v"],
+            ["Tutti i tipi di eccezione estendono la classe Object.","v"],
+            ["Tutti i tipi di eccezione estendono la classe RuntimeException.","f"],
+            ["Un oggetto può non esistere dopo la sua dichiarazione.","v"],
+            ["Un oggetto può non esistere dopo la sua creazione.","f"],
+            ["La dichiarazione di un oggetto e la sua creazione possono essere svolte contemporaneamente.","v"],
+            ["La dichiarazione di un oggetto e la sua creazione possono essere svolte solo in tempi diversi.","f"],
+            ["La dichiarazione di un oggetto e la sua creazione possono essere svolte in tempi diversi.","v"],
+            ["La dichiarazione di un oggetto e la sua creazione possono essere svolte solo contemporaneamente.","f"],
+            ["Un oggetto esiste sempre dopo la sua dichiarazione.","f"],
+            ["Ogni valore in memoria non è associata ad un tipo di dato particolare.","v"],
+            ["Ogni valore in memoria è associato ad un tipo di dato particolare.","f"],
+            ["L'operatore new non restituisce un riferimento all'oggetto appena creato.","f"],
+            ["L'aliasing coniste nel riferiresti alla stessa locazione con nomi diversi.","v"],
+            ["Se A è un istanza di B e B è una sottoclasse di allora A è un istanza di C.","v"],
+            [" Se implementiamo le liste mediante template, i membri di una lista hanno tutto lo stesso tipo (o nel caso object oriented delle sottoclassi di quel tipo.","v"],
+            ["Tra i compiti del supporto a run time c'è la gestione della memoria.","v"],
+            ["Un linguaggio puramente funzonale ha i cicli while.","f"],
+            ["Nel paradigma funzionale si possono usare cicli for e while.","f"],
+            ["Nel paradigma funzionale puro non ci sono gli assegnamenti.","v"],
+            ["Nel paradima funzionale puro non ci sono gli assegnamenti.","v"],
+            ["La funzione membro (elemento, lista) nel paradigma funionale può essere usaa anche per generare tutti gli elementi della lista.","v"],
+            ["La promozione automatica dei tipi numerici è una forma di polimorfismo ad hoc.","v"],
+            ["Nei linguaggi funzionali env(x) restitisce il valore di x.","v"],
+            ["Nei linguaggi funzionali env(x) restituisce una locazione.","f"],
+            ["In un linguaggio funzionale puro, un idenificatore x rappresenta env(x).","v"],
+            ["Nei linguaggi funzionali l'ambiente associa direttamente gli identificatori al loro valore.","v"],
+            ["Nei linguaggi imperativi l'ambiente associa direttamente gli idenificatori al loro valore.","f"],
+            ["I linguaggi funzionali non sono computazionalmente completi.","f"],
+            ["I linguaggi funzionali puri non sono computazionalmente completi.","f"],
+            ["Compilatore e programmi oggettop sono di norma eseguiti dalla stessa macchina.","f"],
+            ["Nei linguaggi fortemente tipati il type checking avviene tutto a tempo di compilazione.","f"],
+            ["In un linguaggio fortemente tipato il controllo dei tipi avviene sempre intermente a tempo di compilazione.","f"],
+            ["In un linguaggio fortemente tipato il controllo dei tipi avviene durante la compilazione e l’esecuzione.","v"],
+            ["In un linguaggio staticamente tipato il controllo dei tipi avviene sempre interamente a tempo di compilazione ed esecuzione.","v"],
+            ["In un linguaggio dinamicamente tipato il controllo dei tipi avviene intermente a tempo di eseuzione.","v"],
+            ["Se il linguaggio è dinamicamente tipato, allora il tipo di una variabile può cambiare durante l’esecuzione del programma.","v"],
+            ["In un linguaggio debolmente tipato il controllo dei tipi avviene sempre interamente a tempo di compilazione.","f"],
+            ["Il controllo di correttezza dei downcast richiede controlli a runtime.","v"],
+            ["Il polimorfismo per inclusione è il più indicato per la definizione di collezione di oggetti omogenei.","f"],
+            [" Il polimorfismo che permette più controlli a tempo di compilazione è quello parametrico.","v"],
+            ["Si può accedere alle variabili non locali di una procedura in tempo costante, indipendentemente da quanti record di attivazione devono attraversare.","v"],
+            ["Il codice oggetto deve essere eseguito da un interprete diverso dala macchina hardware.","f"],
+            ["Il polimorfismo parametrico puro può generare errori di tipo a runtime.","f"],
+            ["Le macro hanno un proprio ambiente locale implementato con un record di attivazione.","f"],
+            ["In un programma che usa le union o altre forme di record varianti il controllo dei tipi può essere fatto interamente a tempo di compilazione.","f"],
+            ["Il polimorfismo parametrico puro (template) è più adatto del polimorfismo per inclusione per rappresentare insiemi di oggetti omogenei.","v"],
+            ["Il polimorfismo parametrico puro (template) è più adatto del polimorfismo per inclusioone per rappresentare insieme di oggetti eterogenei","f"],
+            ["Il polimorfismo parametrico puro (template) ammette il controllo dei tipi completo a tempo di compilazione.","v"],
+            ["Il polimorfismo parametrico puro (template) può generare errori di tipo a runtime.","f"],
+            
             // Aggiungi qui tutte le altre domande e risposte del questionario
             ];
 
             shuffleQuestionsAndAnswers(questionario);
+
+            questionario.splice(30); // prendi le prime 30 domande
             const numQuestions = questionario.length;
             let score = 0;
             let wrongAnswers = [];
@@ -137,7 +252,7 @@
 
             const instruction = document.createElement('p');
             instruction.textContent =
-            "Rispondi a tutte le domande con 'Vero' o 'Falso'. Clicca il pulsante in fondo al test per visualizzare il risultato:";
+            "Rispondi a tutte e 30 le domande con 'Vero' o 'Falso'. Clicca il pulsante in fondo al test per visualizzare il risultato:";
             testForm.appendChild(instruction);
 
             for (let i = 0; i < numQuestions; i++) {
@@ -193,16 +308,13 @@
               }
             }
 
-            var trentesimi = (score / numQuestions) * 30;
+            //var trentesimi = (score / numQuestions) * 30;
             resultDiv.innerHTML =
               '<h1>Hai totalizzato ' +
               score +
               ' punti su ' +
               numQuestions +
-              '.' +
-              ' (' +
-              trentesimi +
-              ' in trentesimi)</h1>';
+              '.';
             if (wrongAnswers.length > 0) {
               resultDiv.innerHTML += '<h2>Le risposte sbagliate sono:</h2>';
               for (let i = 0; i < wrongAnswers.length; i++) {
@@ -237,10 +349,10 @@
 </head>
 <body>
     <div id="test-form">
-		<h1>Test di teoria di LP I</h1>
-        <p>Chat GPT ha generato automaticamente il codice HTML, CSS e JavaScript per questo test.</p>
-		<p>Puoi modificare il codice per creare test per altri corsi o scaricarlo per eseguirlo offline.</p>
-        <p>Puoi trovare il codice sorgente del test su <a href="https://github.com/AlessandroBonomo28/LP1-simulator">GitHub</a>.</p>
+		<h1>Simulatore di LP I</h1>
+        <p>Chat GPT ha generato automaticamente il codice HTML, CSS e JavaScript di questo simulatore.</p>
+		<p>Il codice sorgente di questo progetto è completamente Open Source. Se lo desideri, puoi contribuire per arricchire il questionario e migliorare l'esperienza di apprendimento per le future matricole.</p>
+        <p>Puoi trovare il codice sorgente su <a href="https://github.com/AlessandroBonomo28/LP1-simulator">GitHub</a>.</p>
 		<button onclick="startTest()">Inizia il Test</button>
     </div>
     <div id="result" style="display: none;"></div>
