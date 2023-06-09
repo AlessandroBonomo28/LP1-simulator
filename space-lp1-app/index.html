@@ -230,10 +230,36 @@
             ["Il polimorfismo parametrico puro (template) è più adatto del polimorfismo per inclusioone per rappresentare insieme di oggetti eterogenei","f"],
             ["Il polimorfismo parametrico puro (template) ammette il controllo dei tipi completo a tempo di compilazione.","v"],
             ["Il polimorfismo parametrico puro (template) può generare errori di tipo a runtime.","f"],
-            
+            ["Nei linguaggi a oggetti l'ambiente non locale di un metodo si può trovare nello heap e nella zona statica.","v"],
+            ["ML non supporta l'equivalenza strutturale sulle dichiarazione fatte con type","f"],
+            ["Nel paradigma funzionale puro non ci sono gli assegnamenti","v"],
+            ["Il C supporta l'equivalenza per nome sui tipi primitivi","v"],
+            ["Gli attributi statici di una classe Java sono memorizzati nello Heap","v"],
+            ["Il controllo di correttezza dei downcast non richiede controlli a runtime","f"],
+            ["Esistono linguaggi a oggetti senza la gerarchia dei tipi","f"],
+            ["In C le variabili non locali di funzioni e procedure si possno trovare nello stack","v"],
+            ["Il C supporta l'equivalenza strutturale sui tipi primitivi","v"],
+            ["in C la lunghezza degli int dipende dall'elaboratore","v"],
+            ["Le macro (come ad es. le #define del C) hanno un proprio ambiente locale implementato con un record di attivazione","f"],
+            ["I parametri IN passati per riferimento non possono essere modificati","v"],
+            ["In un linguaggio fortemente tipato il controllo dei tipi avviene sempre interamente a tempo di compilazione","f"],
+            ["Il predicato Prolog member può essere utilizzato sia per verificare se un dato elemento appartiene a una lista sia come ”generatore”, cioè per enumerare tutti i membri della lista uno a uno","v"],
+            ["In un linguaggio staticamente tipato il controllo dei tipi avviene sempre interamente a tempo di compilazione","v"],
+            ["C adotta lo scoping statico","v"],
+            ["Il comando malloc in C alloca memoria nello heap","v"],
+            ["In Java l'ambiente non locale di una classe interna a un metodo si può trovare sullo stack","v"],
+            ["Il C adotta sempre la structural equivalence tra i tipi","f"],
+            ["Si può accedere alle variabili non locali di una procedura in tempo costante, indipendentemente da quanti record di attivazione si devono attraversare","v"],
+            ["Il comando new in Java alloca memoria nello heap","v"],
+            ["L'ambiente associa gli identificatori direttamente al loro valore nei linguaggi funzionali","v"],
+            ["Java supporta il polimorfismo Ad hoc","v"],
+            ["Java non supporta il polimorfismo parametrico","f"],
+            ["Java supporta il polimorfismo per inclusione","v"],
+            ["In Java le variabili non locali dei metodi si possono trovae nello Heap e nella zona statica","v"],
+            ["La corrttezza dei downcast si può verificare interamente a tempo di compilazione","f"],
             // Aggiungi qui tutte le altre domande e risposte del questionario
             ];
-
+            console.log("Domande nel questionario: " + questionario.length);
             shuffleQuestionsAndAnswers(questionario);
 
             questionario.splice(30); // prendi le prime 30 domande
