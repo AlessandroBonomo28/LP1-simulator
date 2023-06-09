@@ -1,6 +1,8 @@
-# LP1-simulator
- Simulatore di domande teoriche di LP con risultato finale
-- hosted app link: https://lp1simulator-2-u6882435.deta.app/
+# LP1-simulator Open Source
+ Simulatore di domande teoriche di LP con risultato finale.
+- Hosted app: https://lp1simulator-2-u6882435.deta.app/
+
+Le domande sono prese dal pdf `teoria.pdf`. E' possibile contribuire al progetto per arricchire il questionario. La **mission** di questo repository è facilitare la preparazione di questo esame alle future matricole.
 ##
 
 # Contribuzione al progetto
@@ -48,6 +50,7 @@ Grazie per il contributo al progetto!
 ### Deta Space
 Deta Space è una piattaforma serverless che permette di sviluppare e distribuire applicazioni web senza la necessità di configurare e gestire un server. Fornisce un ambiente di esecuzione per applicazioni web statiche, eliminando la necessità di un server back-end tradizionale. Deta Space consente di creare, distribuire e gestire facilmente le applicazioni, offrendo un'infrastruttura scalabile e affidabile.
 
+Create your first Space app: https://deta.space/docs/en/introduction/first-app
 ### Svelte
 Svelte è un framework JavaScript per la costruzione di interfacce utente reattive e dinamiche. A differenza di altri framework come React o Vue, Svelte sposta la maggior parte del lavoro di compilazione dal browser al momento della build. Ciò significa che il codice Svelte viene tradotto in JavaScript ottimizzato prima che l'applicazione venga eseguita, riducendo al minimo il bundle finale e migliorando le prestazioni dell'applicazione. Svelte utilizza un'approccio "reagisci in fase di compilazione" per creare componenti UI altamente efficienti e veloci.
 
