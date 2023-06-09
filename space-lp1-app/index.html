@@ -95,13 +95,15 @@
 				
     </style>
     <script>
-        // Funzione per mescolare l'array di domande
-        function shuffleQuestions(questions, answers) {
-            for (let i = questions.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [questions[i], questions[j]] = [questions[j], questions[i]];
-                [answers[i], answers[j]] = [answers[j], answers[i]];
-            }
+        function shuffleArray(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+        }
+
+        function shuffleQuestionsAndAnswers(questionario) {
+          shuffleArray(questionario);
         }
 
         // Funzione per ottenere la risposta dell'utente
@@ -111,24 +113,16 @@
         }
 
         function startTest() {
-            const questions = [
-                "Il primo Fortran supportava la ricorsione. (v/f)",
-                "Il primo Fortran aveva uno heap. (v/f)",
-                "Il primo Fortran supportava un'operazione analoga ad una malloc. (v/f)",
-                "Nel primo Fortran l'occupazione della memoria di un programma era nota a tempo di compilazione. (v/f)",
-                // Aggiungi qui tutte le altre domande del testo allegato
+            const questionario = [
+            ["Il primo Fortran supportava la ricorsione. (v/f)", "f"],
+            ["Il primo Fortran aveva uno heap. (v/f)", "f"],
+            ["Il primo Fortran supportava un'operazione analoga ad una malloc. (v/f)", "f"],
+            ["Nel primo Fortran l'occupazione della memoria di un programma era nota a tempo di compilazione. (v/f)", "v"],
+            // Aggiungi qui tutte le altre domande e risposte del questionario
             ];
 
-            const answers = [
-                "f",
-                "f",
-                "f",
-                "v"
-                // Aggiungi qui tutte le altre risposte corrispondenti alle domande
-            ];
-
-            shuffleQuestions(questions, answers);
-            const numQuestions = questions.length;
+            shuffleQuestionsAndAnswers(questionario);
+            const numQuestions = questionario.length;
             let score = 0;
             let wrongAnswers = [];
 
@@ -142,38 +136,40 @@
             testForm.appendChild(heading);
 
             const instruction = document.createElement('p');
-            instruction.textContent = "Rispondi a tutte le domande con 'Vero' o 'Falso'. Clicca il pulsante in fondo al test per visualizzare il risultato:";
+            instruction.textContent =
+            "Rispondi a tutte le domande con 'Vero' o 'Falso'. Clicca il pulsante in fondo al test per visualizzare il risultato:";
             testForm.appendChild(instruction);
 
             for (let i = 0; i < numQuestions; i++) {
-                const question = questions[i];
+            const question = questionario[i][0];
+            const answer = questionario[i][1];
 
-                const questionDiv = document.createElement('div');
-                questionDiv.classList.add('question');
-                
-                const questionText = document.createElement('p');
-                questionText.textContent = question;
-                questionDiv.appendChild(questionText);
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('question');
 
-                const trueLabel = document.createElement('label');
-                trueLabel.textContent = 'Vero';
-                const trueInput = document.createElement('input');
-                trueInput.type = 'radio';
-                trueInput.name = `answer-${i}`;
-                trueInput.value = 'v';
-                trueLabel.appendChild(trueInput);
-                questionDiv.appendChild(trueLabel);
+            const questionText = document.createElement('p');
+            questionText.textContent = question;
+            questionDiv.appendChild(questionText);
 
-                const falseLabel = document.createElement('label');
-                falseLabel.textContent = 'Falso';
-                const falseInput = document.createElement('input');
-                falseInput.type = 'radio';
-                falseInput.name = `answer-${i}`;
-                falseInput.value = 'f';
-                falseLabel.appendChild(falseInput);
-                questionDiv.appendChild(falseLabel);
+            const trueLabel = document.createElement('label');
+            trueLabel.textContent = 'Vero';
+            const trueInput = document.createElement('input');
+            trueInput.type = 'radio';
+            trueInput.name = `answer-${i}`;
+            trueInput.value = 'v';
+            trueLabel.appendChild(trueInput);
+            questionDiv.appendChild(trueLabel);
 
-                testForm.appendChild(questionDiv);
+            const falseLabel = document.createElement('label');
+            falseLabel.textContent = 'Falso';
+            const falseInput = document.createElement('input');
+            falseInput.type = 'radio';
+            falseInput.name = `answer-${i}`;
+            falseInput.value = 'f';
+            falseLabel.appendChild(falseInput);
+            questionDiv.appendChild(falseLabel);
+
+            testForm.appendChild(questionDiv);
             }
 
             const submitButton = document.createElement('button');
@@ -181,47 +177,62 @@
             testForm.appendChild(submitButton);
 
             submitButton.addEventListener('click', function () {
+            for (let i = 0; i < numQuestions; i++) {
+              const answer = getAnswer(i);
+              if (answer === '') {
+              alert('Compila tutte le domande prima di consegnare.');
+              return;
+              }
+              if (answer === questionario[i][1]) {
+              score++;
+              } else {
+              wrongAnswers.push({
+                question: questionario[i][0],
+                correctAnswer: questionario[i][1],
+              });
+              }
+            }
 
-                for (let i = 0; i < numQuestions; i++) {
-                    const answer = getAnswer(i);
-					if(answer === ''){
-						alert("Compila tutte le domande prima di consegnare.");
-						return;
-					}
-                    if (answer === answers[i]) {
-                        score++;
-                    } else {
-                        wrongAnswers.push({
-                            question: questions[i],
-                            correctAnswer: answers[i]
-                        });
-                    }
-                }
+            var trentesimi = (score / numQuestions) * 30;
+            resultDiv.innerHTML =
+              '<h1>Hai totalizzato ' +
+              score +
+              ' punti su ' +
+              numQuestions +
+              '.' +
+              ' (' +
+              trentesimi +
+              ' in trentesimi)</h1>';
+            if (wrongAnswers.length > 0) {
+              resultDiv.innerHTML += '<h2>Le risposte sbagliate sono:</h2>';
+              for (let i = 0; i < wrongAnswers.length; i++) {
+              resultDiv.innerHTML +=
+                '<strong>Domanda ' +
+                (i + 1) +
+                ':</strong> ' +
+                wrongAnswers[i].question +
+                '<br>';
+              resultDiv.innerHTML +=
+                'Risposta corretta: ' +
+                wrongAnswers[i].correctAnswer +
+                '<br><br>';
+              }
+            }
+            resultDiv.style.display = 'block';
 
-                var trentesimi = (score / numQuestions) * 30;
-                resultDiv.innerHTML = '<h1>Hai totalizzato ' + score + ' punti su ' + numQuestions + '.' + ' (' + trentesimi + ' in trentesimi)</h1>';
-                if (wrongAnswers.length > 0) {
-                    resultDiv.innerHTML += '<h2>Le risposte sbagliate sono:</h2>';
-                    for (let i = 0; i < wrongAnswers.length; i++) {
-                        resultDiv.innerHTML += '<strong>Domanda ' + (i + 1) + ':</strong> ' + wrongAnswers[i].question + '<br>';
-                        resultDiv.innerHTML += 'Risposta corretta: ' + wrongAnswers[i].correctAnswer + '<br><br>';
-                    }
-                }
-                resultDiv.style.display = 'block';
+            testForm.style.display = 'none';
 
-                testForm.style.display = 'none';
-
-                const retryButton = document.createElement('button');
-                retryButton.textContent = 'Riprova';
-                retryButton.addEventListener('click', function () {
-                    resultDiv.style.display = 'none';
-                    testForm.style.display = 'block';
-                    startTest();
-                });
-
-                resultDiv.appendChild(retryButton);
+            const retryButton = document.createElement('button');
+            retryButton.textContent = 'Riprova';
+            retryButton.addEventListener('click', function () {
+              resultDiv.style.display = 'none';
+              testForm.style.display = 'block';
+              startTest();
             });
-        }
+
+            resultDiv.appendChild(retryButton);
+            });
+          }
     </script>
 </head>
 <body>
