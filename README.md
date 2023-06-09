@@ -69,3 +69,8 @@ Svelte è un framework JavaScript per la costruzione di interfacce utente reatti
 
 ### Vite
 Vite è un sistema di build e sviluppo leggero per le applicazioni web. È progettato per avviare rapidamente l'applicazione durante lo sviluppo grazie a un'architettura di build basata sui moduli. Vite utilizza il concetto di "build on demand" per caricare solo i moduli richiesti durante lo sviluppo, migliorando notevolmente i tempi di avvio dell'applicazione. Supporta inoltre il live-reload, consentendo agli sviluppatori di vedere immediatamente le modifiche apportate al codice senza dover ricaricare manualmente la pagina.
+
+## Meme
+![meme](https://github.com/AlessandroBonomo28/LP1-simulator/assets/75626033/1f3a7487-60c4-411e-9bd5-a4854da7cd37)
+
+
