@@ -21,9 +21,22 @@ Grazie per il tuo interesse a contribuire al progetto! Di seguito trovi le istru
 
 3. Apri il file `index.html` nel tuo editor di codice preferito.
 
-4. Trova l'array `questions` e l'array `answers` all'interno della funzione `startTest()`. Questi array contengono le domande e le risposte corrispondenti.
+4. Trova l'array `questionario` all'interno della funzione `startTest()`. Questi array contengono le domande e le risposte corrispondenti.
 
-5. Aggiungi le nuove domande nel formato desiderato all'array `questions` e le risposte corrispondenti nell'array `answers`. Assicurati che le domande e le risposte abbiano lo stesso indice per corrispondere correttamente.
+5. Aggiungi le nuove domande con corrispondenti risposte all'array `questionario` facendo attenzione al formato.
+   ```
+   //Esempio di aggiunta di domande-risposte
+
+   // array questionario
+    const questionario = [
+            ["Il primo Fortran supportava la ricorsione. (v/f)", "f"],
+            ["Il primo Fortran aveva uno heap. (v/f)", "f"],
+            ["Il primo Fortran supportava un'operazione analoga ad una malloc. (v/f)", "f"],
+            ["Nel primo Fortran l'occupazione della memoria di un programma era nota a tempo di compilazione. (v/f)", "v"],
+            // Aggiungi qui tutte le altre domande e risposte del questionario
+            ];
+
+   ```
 
 6. Salva le modifiche al file `index.html`.
 
