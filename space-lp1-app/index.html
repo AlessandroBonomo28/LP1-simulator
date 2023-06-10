@@ -278,7 +278,7 @@
 
             const instruction = document.createElement('p');
             instruction.textContent =
-            "Rispondi a tutte e 30 le domande con 'Vero' o 'Falso'. Clicca il pulsante in fondo al test per visualizzare il risultato:";
+            "Rispondi a tutte e 30 le domande con 'Vero' o 'Falso'. Se non sai rispondere a una domanda, lasciala in bianco e ti sarà rivelata alla fine del test. Clicca il pulsante in fondo al test per visualizzare il risultato:";
             testForm.appendChild(instruction);
 
             for (let i = 0; i < numQuestions; i++) {
@@ -289,7 +289,7 @@
             questionDiv.classList.add('question');
 
             const questionText = document.createElement('p');
-            questionText.textContent = question;
+            questionText.textContent = (i+1) + '. ' + question;
             questionDiv.appendChild(questionText);
 
             const trueLabel = document.createElement('label');
@@ -312,24 +312,36 @@
 
             testForm.appendChild(questionDiv);
             }
-
+            
             const submitButton = document.createElement('button');
             submitButton.textContent = 'Invia';
             testForm.appendChild(submitButton);
 
             submitButton.addEventListener('click', function () {
+            var alreadyAskedToExit = false;
             for (let i = 0; i < numQuestions; i++) {
               const answer = getAnswer(i);
-              if (answer === '') {
-              alert('Compila tutte le domande prima di consegnare.');
-              return;
+              if (answer === '' && !alreadyAskedToExit) {
+                var domandeInBianco = [];
+                for (let j = 0; j < numQuestions; j++){
+                  if(getAnswer(j)===''){
+                    domandeInBianco.push(j+1);
+                  }
+                }
+                const confirmed = confirm('Sicuro di voler consegnare? Ci sono domande senza risposta ('+domandeInBianco+').');
+                alreadyAskedToExit =true;
+                if (!confirmed) {
+                  return;
+                }
               }
               if (answer === questionario[i][1]) {
               score++;
               } else {
               wrongAnswers.push({
+                lasciataInBianco: (answer === '')? true:false,
                 question: questionario[i][0],
                 correctAnswer: questionario[i][1],
+                index: i
               });
               }
             }
@@ -345,14 +357,14 @@
               resultDiv.innerHTML += '<h2>Le risposte sbagliate sono:</h2>';
               for (let i = 0; i < wrongAnswers.length; i++) {
               resultDiv.innerHTML +=
-                '<strong>Domanda ' +
-                (i + 1) +
+                '<strong>Domanda ' + (wrongAnswers[i].index + 1) +
+                 (wrongAnswers[i].lasciataInBianco ? ' - Lasciata in bianco':'')+
                 ':</strong> ' +
                 wrongAnswers[i].question +
                 '<br>';
               resultDiv.innerHTML +=
                 'Risposta corretta: ' +
-                wrongAnswers[i].correctAnswer +
+                (wrongAnswers[i].correctAnswer==='v' ? 'Vero' : 'Falso') +
                 '<br><br>';
               }
             }
