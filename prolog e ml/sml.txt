@@ -1,0 +1,28 @@
+
+val l = [2,3,5,6];
+
+fun fact 0=1 | fact n=n*fact(n-1);
+  
+fact(3);
+
+fun reduce f e [] = e | reduce f e (x::y) = f(x,reduce f e y);
+
+fun filter f[]=[] | filter f (x::y) = if f(x) then x :: (filter f y) else filter f y;
+
+fun g x = x > 5;
+
+g(6);
+
+val listTest = [1, 2, 4, 6, 8, 10];
+
+filter g listTest;
+
+fun map f [] = [] | map f(x::y ) = f(x) :: (map f y);
+
+map g listTest;
+
+val h = fn (x, y) => x + y;
+
+reduce h 0 listTest;
+
+map g [1,2,3];
